@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modulo 1.3 - Primeiros passos | Printing Press</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🖨️</span><span class="font-bold text-lg hidden sm:inline">Printing Press</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Printing Press</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Inicio</a><span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha Printing Press</a><span>/</span>
+      <span class="text-emerald-400">Modulo 1.3</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MODULO 1.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🚀 Primeiros passos com o starter-pack</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Testar as 4 CLIs do bundle no Claude Code, medir tokens e entender como funcionam os triggers em linguagem natural.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Topicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">15</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Basico</div><div class="text-xs text-neutral-400">Nivel</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Pratica</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">⚽ pp-espn — placares ao vivo</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">CLI de esportes que cobre <strong class="text-emerald-400">10 ligas</strong> (NFL, NBA, MLB, NHL, NCAA, MLS, EPL, WNBA, etc), com placar ao vivo, classificacoes, head-to-head e box score completo.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Exemplo direto no terminal</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>$ espn-pp-cli games --league nba --date today
+
+[NBA] Hoje (3 jogos):
+  Lakers 112  @ Celtics 109   FINAL
+  Warriors 98  @ Knicks 104   FINAL
+  Heat 99     @ Mavericks 110 4Q 2:14
+
+$ espn-pp-cli summary --game 401584893
+Box score, top scorers, lances de pontuacao e odds...</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🗣️</span> No Claude Code</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li>"qual o placar do Lakers hoje?" → invoca <code>pp-espn</code></li>
+          <li>"box score do jogo dos Mavericks de ontem"</li>
+          <li>"classificacao da NBA leste"</li>
+          <li>"Chiefs vs Eagles head to head"</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">✈️ pp-flight-goat — voos baratos</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Agrega <strong class="text-emerald-400">Google Flights, Kayak e FlightAware</strong> em uma unica CLI. Combina browser-sniff (Google) com API oficial (FlightAware AeroAPI).</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Buscar voo</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>$ flight-goat-pp-cli search --from GRU --to LIS --date 2026-07-15
+
+3 melhores opcoes:
+  1. TAP TP088   GRU 23:50 -> LIS 12:35+1  9h45  R$ 4.120
+  2. LATAM LA729 GRU 18:25 -> LIS 07:00+1 10h35  R$ 4.380
+  3. KLM KL702   GRU 16:40 -> AMS+LIS    14h20  R$ 3.890</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Sem API key</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Search basico (Google Flights + Kayak)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Comparacao de tarifas</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Scan de rotas long-haul</span></li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-neutral-300 mb-4">🔑 Com AeroAPI key</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-neutral-400">·</span><span>Tracking ao vivo do voo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-neutral-400">·</span><span>Alertas de atraso</span></li>
+            <li class="flex items-start space-x-2"><span class="text-neutral-400">·</span><span>Confiabilidade historica do voo</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🎬 pp-movie-goat — filmes + watchlist</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Combina <strong class="text-emerald-400">TMDb</strong> (descoberta) com <strong class="text-emerald-400">OMDb</strong> (multi-source ratings) e adiciona uma watchlist em SQLite que sinaliza o que esta nos servicos que voce assina.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Caso de uso real</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code># Onde assistir
+$ movie-goat-pp-cli where "Dune Part Two"
+Streaming: Max (assinado), Amazon Prime (rent R$ 14,90)
+IMDb 8.5  RT 92%  Metacritic 79
+
+# Adicionar a watchlist
+$ movie-goat-pp-cli watchlist add "The Brutalist"
+Adicionado. Indicara quando entrar em Max, Netflix ou Disney+.</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por que e exemplo interessante</h3>
+        <p class="text-neutral-300">Mostra que uma CLI pode ter <strong>estado proprio</strong> (watchlist persiste entre sessoes) e <strong>preferencias do usuario</strong> (servicos assinados configurados via <code>auth</code>).</p>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🍳 pp-recipe-goat — receitas ranqueadas</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Busca a melhor versao de qualquer receita em <strong class="text-emerald-400">37 sites confiaveis</strong> (NYT Cooking, Serious Eats, Bon Appetit, etc), com cookbook offline e match contra sua despensa.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Pantry match</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>$ recipe-goat-pp-cli search "risoto de cogumelos" --pantry-match
+
+Top 3 (com base na sua despensa):
+  1. Risoto de cogumelos (Serious Eats)     ★ 4.8  faltam: 0
+  2. Risoto cremoso (NYT Cooking)           ★ 4.6  faltam: parmesao
+  3. Risoto vegano (Bon Appetit)            ★ 4.5  faltam: caldo legumes</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🔍</span> Browser-sniff em larga escala</h3>
+        <p class="text-neutral-300">Sites de receita raramente tem API publica. O recipe-goat foi gerado via <code>browser-sniff</code>: o factory inspecionou o HTML/JSON-LD de cada site e gerou um parser dedicado.</p>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">📊 Medir tokens com /context</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O comando <code>/context</code> do Claude Code mostra quantos tokens cada skill e MCP server consome. E o jeito mais direto de provar o ganho ao migrar de MCP para CLI.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Antes vs depois</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code># Antes (com MCP server espn)
+/context
+&gt; MCP: espn-mcp           18.420 tokens
+&gt; Skills: (nenhuma)              0 tokens
+&gt; Total overhead:           18.420 tokens
+
+# Depois (so com pp-espn CLI + skill)
+/context
+&gt; MCP:                            0 tokens
+&gt; Skills: pp-espn              420 tokens
+&gt; Total overhead:              420 tokens</code></pre>
+        <p class="text-neutral-300 mt-4"><strong class="text-emerald-400">44x</strong> menos overhead so no exemplo de uma CLI.</p>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Defenda no time</h3>
+        <p class="text-neutral-300">Tire um print do <code>/context</code> antes e depois da migracao. E o argumento mais concreto para convencer engenharia/financeiro a adotar CLIs.</p>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🗣️ Triggers em linguagem natural</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cada skill define <strong class="text-emerald-400">trigger phrases</strong> em PT-BR e ingles. Voce nao precisa decorar comando — o agente roteia pelo que voce digita.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">⚽ pp-espn</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"placar dos Lakers hoje"</li>
+            <li>"jogos da NFL essa semana"</li>
+            <li>"classificacao da MLB leste"</li>
+            <li>"AP poll college football"</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✈️ pp-flight-goat</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"voos baratos GRU LIS julho"</li>
+            <li>"rastreia voo TAP088"</li>
+            <li>"long haul de Sao Paulo para Asia"</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">🎬 pp-movie-goat</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"onde assistir Oppenheimer"</li>
+            <li>"o que assistir hoje"</li>
+            <li>"filmografia de Christopher Nolan"</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">🍳 pp-recipe-goat</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"melhor receita de carbonara"</li>
+            <li>"o que cozinhar com frango e limao"</li>
+            <li>"adiciona ao cookbook"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Cuidado</h3>
+        <p class="text-neutral-300">Se voce tiver MCP server e CLI cobrindo o mesmo dominio, o agente pode escolher o MCP (que esta sempre carregado). <strong>Desinstale MCP duplicados</strong> antes para garantir que a CLI ganhe.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do Modulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">4 CLIs do starter-pack na ponta</strong><span class="text-neutral-400"> — espn, flight-goat, movie-goat, recipe-goat.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Cada CLI tem skill correspondente</strong><span class="text-neutral-400"> — agente invoca via linguagem natural.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">/context mede o ganho</strong><span class="text-neutral-400"> — antes vs depois da migracao para CLI.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Triggers em PT-BR funcionam</strong><span class="text-neutral-400"> — voce pergunta em portugues, agente roteia.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Proximo Modulo:</h3>
+          <p class="text-neutral-300">1.4 — Criando sua propria CLI</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Modulo anterior</a>
+          <a href="modulo-1-4.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Proximo Modulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Printing Press · Curso pratico · 2026 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); themeToggleDarkIcon.classList.remove('hidden'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

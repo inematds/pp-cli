@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modulo 1.5 - Caso pratico: BrasilAPI | Printing Press</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🖨️</span><span class="font-bold text-lg hidden sm:inline">Printing Press</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Printing Press</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Inicio</a><span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha Printing Press</a><span>/</span>
+      <span class="text-emerald-400">Modulo 1.5</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MODULO 1.5</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🇧🇷 Caso pratico: BrasilAPI</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Construir <code>brasil-api-pp-cli</code> do zero: CEP, CNPJ, bancos, feriados, DDD com cache SQLite e skill em PT-BR.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Topicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">30</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Inter.</div><div class="text-xs text-neutral-400">Nivel</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Hands-on</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🎯 Briefing do projeto</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Antes do <code>/printing-press</code>, escreva 1 paragrafo definindo escopo, persona e endpoints minimos. CLI bem definida sai redondinha no primeiro generate.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Briefing pronto</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>CLI: brasil-api-pp-cli
+Skill: pp-brasil-api
+Persona: dev brasileiro usando Claude Code, n8n ou Supabase Edge Function
+Endpoints (v1):
+  - GET /cep/v2/{cep}
+  - GET /cnpj/v1/{cnpj}
+  - GET /banks/v1
+  - GET /feriados/v1/{ano}
+  - GET /ddd/v1/{ddd}
+Auth: nenhuma (API publica)
+Output padrao: texto humano. Flag --json para n8n.
+Cache: SQLite (CEP/CNPJ: 30 dias; bancos/feriados: 24h)</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por que escrever isso</h3>
+        <p class="text-neutral-300">O factory faz a entrevista, mas se voce ja chega com decisoes, ele pula perguntas e gera direto. Escopo aberto vira CLI gigante com endpoints que ninguem usa.</p>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">📮 CEP: o subcomando mais simples</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Caso base: 1 input, 1 output, sem auth, sem paginacao. Ideal para entender o pipeline inteiro.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Comando final</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>$ brasil-api cep 01310100
+Av. Paulista, Bela Vista, Sao Paulo/SP
+
+$ brasil-api cep 01310100 --json
+{"cep":"01310-100","logradouro":"Av. Paulista","bairro":"Bela Vista","cidade":"Sao Paulo","uf":"SP"}
+
+# Cache: segunda chamada e instantanea
+$ brasil-api cep 01310100
+Av. Paulista, Bela Vista, Sao Paulo/SP  (cache 3 ms)</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Antes vs depois</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>JSON cru</strong> da API: ~280 bytes / ~80 tokens</li>
+          <li><strong>Output da CLI</strong> (texto): ~50 bytes / ~15 tokens</li>
+          <li>Reducao: <strong class="text-emerald-400">5x</strong> em uma chamada trivial. Imagine em 100 CEPs.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🏢 CNPJ com --fields</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A resposta de CNPJ traz <strong class="text-emerald-400">40+ campos</strong>. A flag <code>--fields</code> deixa o agente filtrar antes de receber.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Padrao: tudo</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>$ brasil-api cnpj 00000000000191
+Razao social: BANCO DO BRASIL SA
+Nome fantasia: BANCO DO BRASIL
+Situacao: ATIVA
+Abertura: 1966-08-01
+... (38 linhas)</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">🎯</span> Com filtro</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>$ brasil-api cnpj 00000000000191 --fields razao_social,situacao
+BANCO DO BRASIL SA | ATIVA</code></pre>
+        <p class="text-neutral-300 mt-3">O agente economiza <strong class="text-emerald-400">90% dos tokens</strong> quando so precisa confirmar se a empresa esta ativa.</p>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Padrao adotar em toda CLI</h3>
+        <p class="text-neutral-300">Sempre que o endpoint retornar muitos campos, ofereca <code>--fields</code>. O agente quase nunca quer tudo.</p>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🏦 Bancos, Feriados e DDD</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Tres endpoints com <strong class="text-emerald-400">listas estaveis</strong>. Sao ideais para cache agressivo (24h+) e busca local via FTS5.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Exemplos</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>$ brasil-api bancos --search "itau"
+341  ITAU UNIBANCO S.A.
+652  ITAU UNIBANCO HOLDING S.A.
+184  ITAU BBA S.A.
+
+$ brasil-api feriados 2026
+2026-01-01  Confraternizacao Universal
+2026-02-17  Carnaval
+... (12 linhas)
+
+$ brasil-api ddd 11
+Sao Paulo (SP) + 38 cidades da regiao metropolitana</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ O que fazer</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cache 24h em listas estaveis</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>FTS5 para busca em bancos</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Output em tabela compactada</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ O que NAO fazer</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cache permanente (lista de bancos muda)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Devolver JSON cru sem filtro</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fazer pull online em loop</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">💾 Cache SQLite offline</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-emerald-400">SQLite local</strong> guarda o JSON cru. Queries seguintes leem do disco. Funciona offline e elimina latencia.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">Schema gerado pelo factory</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>CREATE TABLE queries (
+  hash TEXT PRIMARY KEY,        -- sha256 de metodo+url+params
+  endpoint TEXT,                -- ex: 'cep', 'cnpj'
+  payload TEXT,                 -- JSON cru
+  fetched_at INTEGER,           -- timestamp
+  ttl_seconds INTEGER           -- TTL por endpoint
+);
+
+CREATE INDEX idx_endpoint ON queries(endpoint, fetched_at);
+CREATE VIRTUAL TABLE queries_fts USING fts5(payload, content='queries');</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">⏱️</span> TTL por endpoint</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li>· CEP: <strong>30 dias</strong> (raramente muda)</li>
+          <li>· CNPJ: <strong>7 dias</strong> (situacao muda eventualmente)</li>
+          <li>· Bancos: <strong>24h</strong></li>
+          <li>· Feriados: <strong>30 dias</strong> (ano todo previsivel)</li>
+          <li>· DDD: <strong>30 dias</strong></li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Flag --refresh</h3>
+        <p class="text-neutral-300">Sempre exponha <code>--refresh</code> para forcar nova chamada ignorando cache. Util quando o usuario sabe que o dado mudou (ex: empresa acabou de ser ativada).</p>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🎁 Empacotar a skill pp-brasil-api</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A CLI esta pronta. Falta criar a <strong class="text-emerald-400">skill em PT-BR</strong> para o Claude Code rotear linguagem natural.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4">SKILL.md gerado</h3>
+        <pre class="text-sm text-neutral-300 overflow-x-auto"><code>---
+name: pp-brasil-api
+description: BrasilAPI CLI. Consulta CEP, CNPJ, bancos, feriados e DDD.
+  Trigger phrases: "CEP de X", "essa empresa esta ativa?", "lista de
+  bancos com Itau no nome", "feriados de 2026", "que cidades sao DDD 11".
+---
+
+# pp-brasil-api
+
+## Exemplos
+
+- "qual o CEP da Av. Paulista?" -&gt; `brasil-api cep 01310100`
+- "essa empresa CNPJ 00.000.000/0001-91 esta ativa?" -&gt;
+  `brasil-api cnpj 00000000000191 --fields razao_social,situacao`
+- "lista bancos brasileiros com 'Itau'" -&gt; `brasil-api bancos --search itau`</code></pre>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">🧪</span> Teste rapido no Claude Code</h3>
+        <p class="text-neutral-300 mb-3">Depois de instalar a skill, abra o Claude Code e pergunte:</p>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>· "qual o CEP da Avenida Brasil 1000 em Sao Paulo?"</li>
+          <li>· "verifica se o CNPJ 00.000.000/0001-91 esta ativo"</li>
+          <li>· "quais os feriados nacionais de 2026?"</li>
+        </ul>
+        <p class="text-neutral-300 mt-3">Se o agente invocar <code>brasil-api</code>, a integracao esta perfeita.</p>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🇧🇷</span> Dica de PT-BR</h3>
+        <p class="text-neutral-300">Sempre inclua trigger phrases em <strong>portugues do Brasil coloquial</strong>. "essa firma ta ativa?", "tem CEP do bairro tal" — o agente brasileiro fala assim.</p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do Modulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">brasil-api-pp-cli</strong><span class="text-neutral-400"> — 5 endpoints, cache SQLite, output enxuto.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Padrao --fields</strong><span class="text-neutral-400"> — agente filtra a resposta antes de consumir.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">TTL diferenciado</strong><span class="text-neutral-400"> — CEP 30d, CNPJ 7d, bancos 24h.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Skill em PT-BR</strong><span class="text-neutral-400"> — agente roteia frases brasileiras coloquiais.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Proximo Modulo:</h3>
+          <p class="text-neutral-300">1.6 — Integracoes: n8n + Supabase</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-4.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Modulo anterior</a>
+          <a href="modulo-1-6.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Proximo Modulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Printing Press · Curso pratico · 2026 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); themeToggleDarkIcon.classList.remove('hidden'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

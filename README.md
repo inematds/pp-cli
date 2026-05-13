@@ -6,24 +6,31 @@ Curso em português sobre **Printing Press** — a ferramenta que transforma sit
 
 ## 📚 Curso
 
-Acesse a versão web: **https://inematds.github.io/pp-cli/**
+Acesse a versão web (servida pelo GitHub Pages na raiz do `main`):
 
-Ou navegue pelos módulos:
+**https://inematds.github.io/pp-cli/**
 
-1. [Conceitos: CLI vs API vs MCP](docs/01-conceitos.md)
-2. [Instalação (Go + binário + skills)](docs/02-instalacao.md)
-3. [Primeiros passos com o starter-pack](docs/03-primeiros-passos.md)
-4. [Criando sua própria CLI](docs/04-criando-cli.md)
-5. [Caso prático: CLI para BrasilAPI](docs/05-caso-pratico.md)
-6. [Integrações: n8n e Supabase](docs/06-integracoes.md)
-7. [Publicando sua CLI no library oficial](docs/07-publicar.md)
+### Estrutura
+
+- [`index.html`](index.html) — landing geral
+- [`curso/printing-press/index.html`](curso/printing-press/index.html) — trilha completa (mapa + 7 módulos)
+- Módulos:
+  1. [Conceitos: CLI vs API vs MCP](curso/printing-press/modulo-1-1.html)
+  2. [Instalação completa](curso/printing-press/modulo-1-2.html)
+  3. [Primeiros passos com o starter-pack](curso/printing-press/modulo-1-3.html)
+  4. [Criando sua própria CLI](curso/printing-press/modulo-1-4.html)
+  5. [Caso prático: BrasilAPI](curso/printing-press/modulo-1-5.html)
+  6. [Integrações: n8n + Supabase](curso/printing-press/modulo-1-6.html)
+  7. [Publicando no library oficial](curso/printing-press/modulo-1-7.html)
+
+Cada módulo tem 6 tópicos com seções "O que é / Por que aprender / Conceitos-chave" e exemplos práticos reais.
 
 ## 🚀 Quick start
 
 ```bash
-# Pré-requisitos: Go 1.26.3+, Node 18+, Claude Code
+# Pré-requisitos: Go 1.26.3+, Node 18+, Claude Code 2.0+
 
-# 1. Instalar binário
+# 1. Instalar binário factory
 go install github.com/mvanhorn/cli-printing-press/v4/cmd/printing-press@latest
 
 # 2. Instalar starter-pack (4 CLIs prontas)
@@ -38,11 +45,20 @@ Depois, no Claude Code, peça em linguagem natural:
 > _"quais jogos da NBA têm hoje?"_ → invoca `pp-espn`
 > _"voos baratos GRU→LIS em julho"_ → invoca `pp-flight-goat`
 
+## 🛠️ Servir localmente
+
+```bash
+# Qualquer servidor estático funciona, ex:
+python3 -m http.server 8000
+# Abra http://localhost:8000/
+```
+
 ## 🔗 Links oficiais
 
-- Site: https://printingpress.dev
-- Repo principal: https://github.com/mvanhorn/cli-printing-press
+- Site Printing Press: https://printingpress.dev
+- Repo factory: https://github.com/mvanhorn/cli-printing-press
 - Biblioteca de CLIs: https://github.com/mvanhorn/printing-press-library
+- INEMA.CLUB: https://inema.club
 
 ## 📝 Licença
 
