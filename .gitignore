@@ -1,0 +1,15 @@
+# Clones upstream (referência local, não versionar)
+cli-printing-press/
+printing-press-library/
+
+# Claude / IDE
+.claude/
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
